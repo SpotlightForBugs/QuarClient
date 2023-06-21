@@ -1,5 +1,6 @@
 package com.example.module;
 
+import com.example.module.movement.NoFall;
 import com.example.module.movement.VanillaFlight;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class ModuleManager {
     }
     private void addModules() {
         mods.add(new VanillaFlight());
+        mods.add(new NoFall());
 
     }
 }
