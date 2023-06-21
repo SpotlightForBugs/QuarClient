@@ -86,7 +86,7 @@ public class Mod {
         MOVEMENT,
         RENDER,
         EXPLOIT,
-        WORLD
+        MISC
     }
 
 

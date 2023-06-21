@@ -1,6 +1,7 @@
 package com.example.module.movement;
 
 import com.example.module.Mod;
+import com.example.module.ModuleManager;
 import org.lwjgl.glfw.GLFW;
 
 public class VanillaFlight extends Mod{
@@ -20,6 +21,12 @@ public class VanillaFlight extends Mod{
     public void onDisable() {
         assert mc.player != null;
         mc.player.getAbilities().flying = false;
+    }
+
+    @Override
+    public void onEnable() {
+        assert mc.player != null;
+        ModuleManager.INSTANCE.disableMod("Jetpack");
     }
 
 }

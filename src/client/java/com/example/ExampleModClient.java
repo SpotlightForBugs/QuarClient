@@ -4,6 +4,8 @@ import com.example.module.Mod;
 import com.mojang.authlib.exceptions.MinecraftClientException;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -11,6 +13,9 @@ import com.example.module.ModuleManager;
 
 public class ExampleModClient implements ClientModInitializer {
     public static final ExampleModClient INSTANCE = new ExampleModClient();
+    public static ClientPlayerEntity player = MinecraftClient.getInstance().player;
+
+
     public Logger logger = LogManager.getLogger(ExampleModClient.class);
     private MinecraftClient mc = MinecraftClient.getInstance();
     @Override
