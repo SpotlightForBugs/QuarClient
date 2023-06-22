@@ -13,6 +13,16 @@ public class ExampleClientMixin {
 		public void onTick(CallbackInfo ci) {
 			ExampleModClient.INSTANCE.onTick();
 		}
+
+
+
+
+
+
+		@Inject(method = "tick", at = @At("RETURN"), cancellable = true)
+	public void changeWindowTitle(CallbackInfo ci) {
+			MinecraftClient.getInstance().getWindow().setTitle(ExampleModClient.INSTANCE.getWindowTitle());
+		}
 }
 
 
