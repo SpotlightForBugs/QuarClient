@@ -33,7 +33,7 @@ public class ExampleModClient implements ClientModInitializer {
 
     public void onKeyPress(int key, int action) {
         if (mc.player != null && mc.world != null) {
-            if (!(mc.currentScreen == null || mc.currentScreen instanceof ChatScreen)) {
+            if ( mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
                 if (action == GLFW.GLFW_PRESS) {
                     for (Mod mod : ModuleManager.INSTANCE.getModules()) {
                         if (mod.getKey() == key) {

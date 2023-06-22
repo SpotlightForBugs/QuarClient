@@ -56,9 +56,17 @@ public class ModuleManager {
         mods.add(new Step());
         mods.add(new ModInformation());
         mods.add(new Panic(mods));
+        mods.add(new Mod("HUD", "the HUD", Mod.Category.MISC) {
+            @Override
+            public void onEnable() {
+                super.onEnable();
+            }
 
-
-
+            @Override
+            public void onDisable() {
+                super.onDisable();
+            }
+        });
     }
 
     public void disableMod(String name) {
@@ -109,5 +117,12 @@ public class ModuleManager {
         }
 
 
-
+    public Mod getModule(String name) {
+        for (Mod mod : mods) {
+            if (mod.getName().equals(name)) {
+                return mod;
+            }
+        }
+        return null;
+    }
 }
