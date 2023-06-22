@@ -103,19 +103,11 @@ public class ModuleManager {
             });
             if (ClientCommandManager.getActiveDispatcher() != null){
                 ClientCommandManager.getActiveDispatcher().register(command);
-            }else {
-
-                while (ClientCommandManager.getActiveDispatcher() == null){
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } registerCommands();
+            }
 
             }
         }
 
 
 
-} }
+}

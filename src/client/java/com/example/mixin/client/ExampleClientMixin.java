@@ -14,3 +14,5 @@ public class ExampleClientMixin {
 			ExampleModClient.INSTANCE.onTick();
 		}
 }
+
+
