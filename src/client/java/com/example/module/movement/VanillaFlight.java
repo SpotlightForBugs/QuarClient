@@ -26,7 +26,7 @@ public class VanillaFlight extends Mod{
     @Override
     public void onEnable() {
         assert mc.player != null;
-        ModuleManager.INSTANCE.disableMod("Jetpack");
+        //ModuleManager.INSTANCE.disableMod("Jetpack");
     }
 
 }

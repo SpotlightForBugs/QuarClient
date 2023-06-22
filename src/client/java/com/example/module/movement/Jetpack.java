@@ -15,8 +15,9 @@ public class Jetpack extends Mod {
 
     @Override
     public void onEnable() {
-        ModuleManager.INSTANCE.disableMod("VanillaFlight");
-        onTick();
+       //ModuleManager.INSTANCE.disableMod("VanillaFlight");
+        //onTick();
+
     }
 
     @Override

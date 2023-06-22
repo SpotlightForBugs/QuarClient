@@ -1,8 +1,19 @@
 package com.example.module;
 
 import com.example.module.misc.AntiAFK;
+import com.example.module.misc.ModInformation;
+import com.example.module.misc.Panic;
 import com.example.module.movement.*;
 import com.example.module.render.Xray;
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.text.Text;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +26,8 @@ public class ModuleManager {
     public ModuleManager() {
 
         addModules();
+        registerCommands();
+        enableMod("Panic");
 
     }
 
@@ -41,6 +54,9 @@ public class ModuleManager {
         mods.add(new Xray());
         mods.add(new NoFall());
         mods.add(new Step());
+        mods.add(new ModInformation());
+        mods.add(new Panic(mods));
+
 
 
     }
@@ -62,4 +78,32 @@ public class ModuleManager {
         }
 
     }
-}
+
+
+
+
+
+
+    /**
+     * The registerCommands method is used to register commands for each module.
+     * This method is called in the constructor of the ModuleManager class.
+     */
+    private void registerCommands() { //TODO: Add command arguments, And Colors
+        for (Mod mod : this.getModules()) {
+            LiteralArgumentBuilder<FabricClientCommandSource> command = LiteralArgumentBuilder.literal(mod.getName());
+            command.executes(context -> {
+                ClientPlayerEntity player = context.getSource().getPlayer();
+                if (mod.isEnabled()) {
+                    player.sendMessage(Text.of("[QUARCLIENT] Disabling " + mod.getName()), false);
+                } else {
+                    player.sendMessage(Text.of("[QUARCLIENT] Enabling " + mod.getName()), false);
+                }
+                mod.toggle();
+                return 1;
+            });
+            ClientCommandManager.getActiveDispatcher().register(command);
+        }
+
+
+
+} }
