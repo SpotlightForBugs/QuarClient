@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 public class Step extends Mod {
 
   public NumberSetting height = new NumberSetting("Height", 2, 1, 10, 0.1);
+
   public Step() {
 
     super("Step", "Allows you to step up blocks", Category.MOVEMENT);

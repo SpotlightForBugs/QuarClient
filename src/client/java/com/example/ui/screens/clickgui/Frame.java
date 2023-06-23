@@ -2,11 +2,10 @@ package com.example.ui.screens.clickgui;
 
 import com.example.module.Mod;
 import com.example.module.ModuleManager;
+import com.example.ui.screens.clickgui.setting.Component;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.ui.screens.clickgui.setting.Component;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
@@ -73,7 +72,6 @@ public class Frame {
       if (extended) {
         for (ModuleButton mb : buttons) {
           mb.mouseClicked(mouseX, mouseY, button);
-
         }
       }
     }
@@ -87,7 +85,6 @@ public class Frame {
     for (ModuleButton mb : buttons) {
       mb.mouseReleased(mouseX, mouseY, button);
     }
-
   }
 
   public boolean isHovered(double mouseX, double mouseY) {
@@ -107,17 +104,15 @@ public class Frame {
 
   public void updateButtons() {
     int offset = height;
-   for (ModuleButton button : buttons) {
-    button.offset = offset;
-    offset += height;
+    for (ModuleButton button : buttons) {
+      button.offset = offset;
+      offset += height;
 
-    if (button.extended){
-      for (Component component: button.components){
-       if (component.setting.isVisible()) offset += height;
+      if (button.extended) {
+        for (Component component : button.components) {
+          if (component.setting.isVisible()) offset += height;
+        }
+      }
     }
-
-   }
-   }
   }
-
 }
