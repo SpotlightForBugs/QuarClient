@@ -1,25 +1,23 @@
 package com.example.module.settings;
 
-public class BooleanSetting extends Setting{
+public class BooleanSetting extends Setting {
 
-    private boolean enabled;
+  private boolean enabled;
 
-    public BooleanSetting(String name, boolean defaultValue) {
-        super(name);
-        this.enabled = defaultValue;
-    }
+  public BooleanSetting(String name, boolean defaultValue) {
+    super(name);
+    this.enabled = defaultValue;
+  }
 
-    public void toggle() {
-        this.enabled = !this.enabled;
-    }
+  public void toggle() {
+    this.enabled = !this.enabled;
+  }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+  public boolean isEnabled() {
+    return enabled;
+  }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 }

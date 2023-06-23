@@ -15,7 +15,7 @@ public class Sprint extends Mod {
   }
 
   @Override
-    public void onDisable() {
+  public void onDisable() {
     assert mc.player != null;
     mc.player.setSprinting(false);
   }
