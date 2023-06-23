@@ -88,6 +88,15 @@ public class ModuleManager {
     }
 
 
+    public List<Mod> getModulesInCategory(Mod.Category category) {
+        List<Mod> modsInCategory = new ArrayList<Mod>();
+        for (Mod mod : mods) {
+            if (mod.getCategory() == category) {
+                modsInCategory.add(mod);
+            }
+        }
+        return modsInCategory;
+    }
 
 
 

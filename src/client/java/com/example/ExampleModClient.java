@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.module.Mod;
+import com.example.ui.screens.clickgui.ClickGUI;
 import com.mojang.authlib.exceptions.MinecraftClientException;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
@@ -44,6 +45,9 @@ public class ExampleModClient implements ClientModInitializer {
                             }
                             mod.toggle();
                         }
+                    }
+                    if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
+                        mc.setScreen(ClickGUI.INSTANCE);
                     }
                 }
             }
