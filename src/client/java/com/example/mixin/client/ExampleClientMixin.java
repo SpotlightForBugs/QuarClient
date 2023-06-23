@@ -18,5 +18,4 @@ public class ExampleClientMixin {
   public void changeWindowTitle(CallbackInfo ci) {
     MinecraftClient.getInstance().getWindow().setTitle(ExampleModClient.INSTANCE.getWindowTitle());
   }
-
 }
