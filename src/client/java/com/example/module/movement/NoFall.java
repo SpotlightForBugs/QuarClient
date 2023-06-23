@@ -18,6 +18,7 @@ public class NoFall extends Mod {
   public void onTick() { // gets called every tick
     ClientPlayerEntity player = mc.player;
 
+    assert player != null;
     if (player.fallDistance <= (player.isFallFlying() ? 1 : 2)) return;
 
     if (player.isFallFlying() && player.isSneaking() && !(player.getVelocity().y < -0.5)) return;

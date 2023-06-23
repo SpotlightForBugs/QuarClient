@@ -73,6 +73,7 @@ public class Frame {
       if (extended) {
         for (ModuleButton mb : buttons) {
           mb.mouseClicked(mouseX, mouseY, button);
+
         }
       }
     }
@@ -106,15 +107,17 @@ public class Frame {
 
   public void updateButtons() {
     int offset = height;
-    for (ModuleButton button : buttons) {
-      button.offset = offset;
-      offset += height;
+   for (ModuleButton button : buttons) {
+    button.offset = offset;
+    offset += height;
 
-    if(button.extended) {
-      for (Component component : button.components) {
-        if (component.setting.isVisible()) offset += height;
-      }
+    if (button.extended){
+      for (Component component: button.components){
+       if (component.setting.isVisible()) offset += height;
     }
+
+   }
+   }
   }
-}
+
 }

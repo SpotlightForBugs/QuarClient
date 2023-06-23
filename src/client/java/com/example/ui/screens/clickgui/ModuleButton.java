@@ -81,7 +81,7 @@ if (extended) {
 
     if (button == 0 && isHovered(mouseX, mouseY)) {
       module.toggle();
-    } else if (button == 1) {
+    } else if (button == 1 && isHovered(mouseX, mouseY)) {
       extended = !extended;
       parent.updateButtons();
     }
