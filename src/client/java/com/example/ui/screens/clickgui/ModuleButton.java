@@ -1,15 +1,14 @@
 package com.example.ui.screens.clickgui;
 
 import com.example.module.Mod;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.module.settings.*;
 import com.example.ui.screens.clickgui.setting.Checkbox;
 import com.example.ui.screens.clickgui.setting.Component;
 import com.example.ui.screens.clickgui.setting.ModeBox;
 import com.example.ui.screens.clickgui.setting.Slider;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.client.gui.DrawContext;
 
 public class ModuleButton {
@@ -40,10 +39,9 @@ public class ModuleButton {
         components.add(new Slider(setting, this, setOffset));
       }
 
-        setOffset += parent.height;
-
+      setOffset += parent.height;
     }
-    }
+  }
 
   public void render(DrawContext context, int mouseX, int mouseY, float delta) {
     context.fill(
@@ -67,17 +65,14 @@ public class ModuleButton {
         parent.x + textOffset,
         parent.y + offset + textOffset,
         module.isEnabled() ? Color.RED.getRGB() : Color.WHITE.getRGB());
-if (extended) {
+    if (extended) {
       for (Component component : components) {
         component.render(context, mouseX, mouseY, delta);
       }
     }
-
   }
 
   public void mouseClicked(double mouseX, double mouseY, int button) {
-
-
 
     if (button == 0 && isHovered(mouseX, mouseY)) {
       module.toggle();
@@ -95,12 +90,7 @@ if (extended) {
     for (Component component : components) {
       component.mouseReleased(mouseX, mouseY, button);
     }
-
-
-
   }
-
-
 
   public boolean isHovered(double mouseX, double mouseY) {
     return mouseX > parent.x
