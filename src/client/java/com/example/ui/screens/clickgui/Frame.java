@@ -17,7 +17,7 @@ public class Frame {
     public int x,y,width,height,dragX,dragY;
     public Mod.Category category;
 
-    public boolean dragging;
+    public boolean dragging, extended;
     private List<ModuleButton> buttons;
 
     protected MinecraftClient mc = MinecraftClient.getInstance();
@@ -28,6 +28,7 @@ public class Frame {
         this.width = width;
         this.height = height;
         this.dragging = false;
+        this.extended = true;
         this.buttons = new ArrayList<>();
 
         int offset = height;
@@ -42,30 +43,40 @@ public class Frame {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
 
         context.fill(x,y,x+width,y+height,Color.RED.getRGB());
-        context.drawTextWithShadow(mc.textRenderer, category.name, x+2, y+2, -1);
+        context.drawTextWithShadow(mc.textRenderer, category.name, x+2, y+((height / 2)-mc.textRenderer.fontHeight / 2), -1);
+        context.drawTextWithShadow(mc.textRenderer, extended ? "-" : "+", x+width - 2 - mc.textRenderer.getWidth("+"), y+((height / 2)-mc.textRenderer.fontHeight / 2), -1);
+
+
+
+        if (extended) {
+
 
         for (ModuleButton button: buttons) {
             button.render(context, mouseX, mouseY, delta);
+        }
         }
 
 
     }
 
     public void mouseClicked(double mouseX, double mouseY, int button) {
-        if(isHovered((int)mouseX,(int)mouseY) && button == 0) { // left click
-            dragging = true;
-            dragX = (int)mouseX - x;
-            dragY = (int)mouseY - y;
+        if(isHovered(mouseX,mouseY)) {
+            if (button == 0) {
+                dragging = true;
+                dragX = (int) mouseX - x;
+                dragY = (int) mouseY - y;
+            } else if (button == 1) {
+                extended = !extended;
+            }
+            if (extended){
+            for (ModuleButton mb : buttons) {
+                mb.mouseClicked(mouseX, mouseY, button);
+            }}
         }
-
-        for (ModuleButton mb: buttons) {
-            mb.mouseClicked(mouseX, mouseY, button);
-        }
-
     }
 
     public void mouseReleased(double mouseX, double mouseY, int button) {
-       if (button == 0 && dragging == true){
+       if (button == 0 && dragging){
            dragging = false;
        }
     }
@@ -79,6 +90,10 @@ public class Frame {
             x = (int)mouseX - dragX;
             y = (int)mouseY - dragY;
         }
+    }
+
+    public List<ModuleButton> getButtons() {
+        return buttons;
     }
 
 

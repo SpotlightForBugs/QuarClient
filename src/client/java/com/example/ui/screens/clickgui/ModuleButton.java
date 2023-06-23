@@ -27,11 +27,10 @@ public class ModuleButton {
     }
 
     public void mouseClicked(double mouseX, double mouseY, int button) {
-        if(isHovered(mouseX,mouseY) && button == 0) { // left click
+        if(button == 0 && isHovered(mouseX,mouseY)) {
             module.toggle();
-        } else {
-            //TODO: SETTINGS
-        }
+        }  //TODO: SETTINGS
+
 
     }
 

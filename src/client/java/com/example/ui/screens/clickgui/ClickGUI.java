@@ -21,7 +21,7 @@ public class ClickGUI extends Screen{
         frames = new ArrayList<>();
         int offset = 20;
         for (Mod.Category category: Mod.Category.values()) {
-            frames.add(new Frame(category, offset, 25, 100, 30));
+            frames.add(new Frame(category, offset, 20, 100, 20));
             offset += 120;
         }
     }
@@ -39,6 +39,7 @@ public class ClickGUI extends Screen{
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         for (Frame frame: frames) {
+            frame.getButtons().forEach(moduleButton -> moduleButton.mouseClicked(mouseX, mouseY, button));
             frame.mouseClicked(mouseX, mouseY, button);
         }
        return super.mouseClicked(mouseX, mouseY, button);

@@ -26,7 +26,6 @@ public class ModuleManager {
     public ModuleManager() {
 
         addModules();
-        registerCommands();
         enableMod("Panic");
 
     }
@@ -100,30 +99,6 @@ public class ModuleManager {
 
 
 
-
-    /**
-     * The registerCommands method is used to register commands for each module.
-     * This method is called in the constructor of the ModuleManager class.
-     */
-    private void registerCommands() { //TODO: Add command arguments, And Colors
-        for (Mod mod : this.getModules()) {
-            LiteralArgumentBuilder<FabricClientCommandSource> command = LiteralArgumentBuilder.literal(mod.getName());
-            command.executes(context -> {
-                ClientPlayerEntity player = context.getSource().getPlayer();
-                if (mod.isEnabled()) {
-                    player.sendMessage(Text.of("[QUARCLIENT] Disabling " + mod.getName()), false);
-                } else {
-                    player.sendMessage(Text.of("[QUARCLIENT] Enabling " + mod.getName()), false);
-                }
-                mod.toggle();
-                return 1;
-            });
-            if (ClientCommandManager.getActiveDispatcher() != null){
-                ClientCommandManager.getActiveDispatcher().register(command);
-            }
-
-            }
-        }
 
 
     public Mod getModule(String name) {
