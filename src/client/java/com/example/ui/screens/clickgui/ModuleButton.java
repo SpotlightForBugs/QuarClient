@@ -23,7 +23,7 @@ public class ModuleButton {
         if (isHovered(mouseX,mouseY)) {
             context.fill(parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0, 0, 0, 160).getRGB());
         }
-        context.drawTextWithShadow(parent.mc.textRenderer, module.getName(), parent.x+2, parent.y+offset+2, -1);
+        context.drawTextWithShadow(parent.mc.textRenderer, module.getName(), parent.x+2, parent.y+offset+2, module.isEnabled() ? Color.RED.getRGB() : Color.WHITE.getRGB());
     }
 
     public void mouseClicked(double mouseX, double mouseY, int button) {
