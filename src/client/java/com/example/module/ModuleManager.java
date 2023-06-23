@@ -42,6 +42,7 @@ public class ModuleManager {
     mods.add(new NoFall());
     mods.add(new Step());
     mods.add(new ModInformation());
+    mods.add(new Sprint());
     mods.add(new Panic(mods));
     mods.add(
         new Mod("HUD", "the HUD", Mod.Category.MISC) {

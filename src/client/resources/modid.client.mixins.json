@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ExampleClientKeyboardMixin",
-    "ExampleClientMixin"
+    "ExampleClientMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
