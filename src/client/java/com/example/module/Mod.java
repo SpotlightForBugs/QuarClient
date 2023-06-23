@@ -1,6 +1,11 @@
 package com.example.module;
 
+import com.example.module.settings.Setting;
 import net.minecraft.client.MinecraftClient;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Mod {
 
@@ -11,6 +16,8 @@ public class Mod {
     private Category category;
     private int key;
     private boolean enabled;
+
+    private List<Setting> settings = new ArrayList<>();
 
 
     protected MinecraftClient mc = MinecraftClient.getInstance();
@@ -90,6 +97,32 @@ public class Mod {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
+
+    public List<Setting> getSettings() {
+        return settings;
+    }
+
+    public void setSettings(List<Setting> settings) {
+        this.settings = settings;
+    }
+
+    public void addSetting(Setting setting) {
+        this.settings.add(setting);
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(Arrays.asList(settings));
+    }
+
+    public Setting getSetting(String name) {
+        for (Setting setting : settings) {
+            if (setting.getName().equals(name)) {
+                return setting;
+            }
+        }
+        return null;
+    }
+
 
     public enum Category {
         COMBAT("Combat"),

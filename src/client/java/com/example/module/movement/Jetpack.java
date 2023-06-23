@@ -12,7 +12,7 @@ public class Jetpack extends Mod {
 
   @Override
   public void onEnable() {
-    // ModuleManager.INSTANCE.disableMod("VanillaFlight");
+    // ModuleManager.INSTANCE.disableMod("Flight");
     // onTick();
 
   }

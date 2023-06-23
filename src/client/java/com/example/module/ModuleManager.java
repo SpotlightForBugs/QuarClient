@@ -34,7 +34,7 @@ public class ModuleManager {
   }
 
   private void addModules() {
-    mods.add(new VanillaFlight());
+    mods.add(new Flight());
     mods.add(new Jetpack());
     mods.add(new Spider());
     mods.add(new AntiAFK());
