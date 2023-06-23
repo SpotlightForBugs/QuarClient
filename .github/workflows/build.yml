@@ -4,8 +4,10 @@
 # against bad commits.
 
 name: build
-on: [push]
-branches: ["1.20"]
+on: 
+  push:
+    branches: 
+      - "1.20"
 
 jobs:
   build:
