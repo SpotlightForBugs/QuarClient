@@ -16,8 +16,8 @@ public class Component {
   public Component(Setting setting, ModuleButton parent, int offset) {
     this.setting = setting;
     this.parent = parent;
-    this.offset = offset;
-  }
+    this.offset = 20;
+    }
 
   public void render(DrawContext context, int mouseX, int mouseY, float delta) {}
 
