@@ -17,7 +17,7 @@ public class Component {
     this.setting = setting;
     this.parent = parent;
     this.offset = 20;
-    }
+  }
 
   public void render(DrawContext context, int mouseX, int mouseY, float delta) {}
 
