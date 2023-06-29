@@ -17,12 +17,11 @@ public class ExampleClientKeyboardMixin {
     ExampleModClient.INSTANCE.onKeyPress(key, action);
   }
 
-
-  //onLeftClick
-    @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
-    public void onMouseButton(long window, int key, int scancode, int action, int modifiers, CallbackInfo ci) {
-      if(key == GLFW.GLFW_MOUSE_BUTTON_LEFT && action == GLFW.GLFW_PRESS) ExampleModClient.INSTANCE.onLeftClick();
-    }
-
-
+  // onLeftClick
+  @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
+  public void onMouseButton(
+      long window, int key, int scancode, int action, int modifiers, CallbackInfo ci) {
+    if (key == GLFW.GLFW_MOUSE_BUTTON_LEFT && action == GLFW.GLFW_PRESS)
+      ExampleModClient.INSTANCE.onLeftClick();
+  }
 }
