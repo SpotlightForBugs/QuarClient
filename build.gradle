@@ -1,6 +1,20 @@
 plugins {
 	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
+	id 'io.sentry.jvm.gradle' version '3.11.0'
+}
+
+sentry {
+
+	includeSourceContext = true
+	org = "sfbteams"
+	projectName = "quarclient"
+
+	authToken = System.getenv("SENTRY_AUTH_TOKEN")
+
+
+
+
 }
 
 version = project.mod_version
@@ -31,6 +45,8 @@ loom {
 }
 
 dependencies {
+	implementation 'io.sentry:sentry:6.16.0'
+
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
