@@ -105,3 +105,10 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+
+tasks.named('sourcesJar') {
+
+	dependsOn 'generateSentryDebugMetaPropertiesjava', 'collectExternalDependenciesForSentry'
+
+
+}
