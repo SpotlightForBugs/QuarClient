@@ -6,9 +6,7 @@ import com.example.module.misc.ModInformation;
 import com.example.module.misc.Panic;
 import com.example.module.movement.*;
 import com.example.module.render.Xray;
-import io.sentry.Scope;
 import io.sentry.Sentry;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,14 +55,11 @@ public class ModuleManager {
     Sentry.configureScope(scope -> scope.setTag("enabled", "false"));
     Sentry.configureScope(scope -> scope.setTransaction("disableMod"));
 
-
-
     for (Mod mod : mods) {
       if (mod.getName().equals(name) && mod.isEnabled()) {
         mod.toggle();
       }
     }
-
   }
 
   public void enableMod(String name) {
@@ -77,7 +72,6 @@ public class ModuleManager {
         if (!mod.isEnabled()) mod.toggle();
       }
     }
-
   }
 
   public List<Mod> getModulesInCategory(Mod.Category category) {
