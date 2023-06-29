@@ -49,10 +49,10 @@ public class ModuleManager {
     mods.add(new Sprint());
     mods.add(new FastEat());
     mods.add(new Criticals());
-    //-----------------------\\
-    //MUST BE LAST
+    // -----------------------\\
+    // MUST BE LAST
     mods.add(new Panic(mods));
-    //MUST BE LAST
+    // MUST BE LAST
   }
 
   public void disableMod(String name) {
