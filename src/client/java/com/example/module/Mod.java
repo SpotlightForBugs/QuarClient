@@ -4,8 +4,6 @@ import com.example.module.settings.Setting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import io.sentry.Sentry;
 import net.minecraft.client.MinecraftClient;
 
 public class Mod {
