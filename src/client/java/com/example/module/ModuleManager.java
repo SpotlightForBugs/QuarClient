@@ -6,6 +6,9 @@ import com.example.module.misc.ModInformation;
 import com.example.module.misc.Panic;
 import com.example.module.movement.*;
 import com.example.module.render.Xray;
+import io.sentry.Scope;
+import io.sentry.Sentry;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class ModuleManager {
   }
 
   private void addModules() {
+    Sentry.configureScope(scope -> scope.setTransaction("addModules"));
     mods.add(new Flight());
     mods.add(new Jetpack());
     mods.add(new Spider());
@@ -49,20 +53,31 @@ public class ModuleManager {
   }
 
   public void disableMod(String name) {
+    Sentry.configureScope(scope -> scope.setTag("mod", name));
+    Sentry.configureScope(scope -> scope.setTag("enabled", "false"));
+    Sentry.configureScope(scope -> scope.setTransaction("disableMod"));
+
+
+
     for (Mod mod : mods) {
-      if (mod.getName().equals(name)) {
+      if (mod.getName().equals(name) && mod.isEnabled()) {
         mod.toggle();
       }
     }
+
   }
 
   public void enableMod(String name) {
+    Sentry.configureScope(scope -> scope.setTag("mod", name));
+    Sentry.configureScope(scope -> scope.setTag("enabled", "true"));
+    Sentry.configureScope(scope -> scope.setTransaction("enableMod"));
 
     for (Mod mod : mods) {
       if (mod.getName().equals(name)) {
         if (!mod.isEnabled()) mod.toggle();
       }
     }
+
   }
 
   public List<Mod> getModulesInCategory(Mod.Category category) {

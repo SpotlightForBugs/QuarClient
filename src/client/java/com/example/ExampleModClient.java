@@ -3,6 +3,8 @@ package com.example;
 import com.example.module.Mod;
 import com.example.ui.screens.clickgui.ClickGUI;
 import com.mojang.authlib.exceptions.MinecraftClientException;
+import io.sentry.SentryEvent;
+import io.sentry.protocol.User;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
@@ -12,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 import com.example.module.ModuleManager;
+import io.sentry.Sentry;
 
 public class ExampleModClient implements ClientModInitializer {
     public static final ExampleModClient INSTANCE = new ExampleModClient();
@@ -21,20 +24,50 @@ public class ExampleModClient implements ClientModInitializer {
 
     public Logger logger = LogManager.getLogger(ExampleModClient.class);
     private MinecraftClient mc = MinecraftClient.getInstance();
+
+    public User user;
+    private String environment = "";
+
     @Override
     public void onInitializeClient() {
-        logger.info("Welcome to " + getWindowTitle());
+
+        if (mc.getSession().getUsername().contains("Player")) {
+            logger.info("Welcome to QuarClient (Development)");
+            environment = "development";
+
+        } else {
+            logger.info("Welcome " + mc.getSession().getUsername() + " to QuarClient");
+            environment = "production";
+        }
+
+
+        Sentry.init(options -> {
+            options.setDsn("https://f6996a6348c04670ba02763e145ee044@o1363527.ingest.sentry.io/4505404898803712");
+            options.setTracesSampleRate(1.0);
+
+            options.setEnvironment(environment);
+            options.setDebug(environment.equalsIgnoreCase("development"));
+
+
+        });
+        this.user = new User();
+        if (this.environment.equalsIgnoreCase("development")) {
+            this.user.setUsername("Player");
+        } else {
+            this.user.setUsername(mc.getSession().getUsername());
+            this.user.setId(mc.getSession().getUuid());
+        }
 
 
     }
 
 
-
-
-
     public void onKeyPress(int key, int action) {
+        try {
+
+
         if (mc.player != null && mc.world != null) {
-            if ( mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
+            if (mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
                 if (action == GLFW.GLFW_PRESS) {
                     for (Mod mod : ModuleManager.INSTANCE.getModules()) {
                         if (mod.getKey() == key) {
@@ -52,15 +85,24 @@ public class ExampleModClient implements ClientModInitializer {
                 }
             }
         }
+        } catch (Exception e) {
+            Sentry.captureException(e);
+        }
     }
 
 
     public void onTick() {
+        try {
+
+
 
         if (mc.player != null && mc.world != null) {
             for (Mod mod : ModuleManager.INSTANCE.getEnabledModules()) {
                 mod.onTick();
             }
+        }
+        } catch (Exception e) {
+            Sentry.captureException(e);
         }
     }
 
