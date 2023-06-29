@@ -22,6 +22,5 @@ public class Spider extends Mod {
     if (velocity.y >= 0.2) return;
 
     player.setVelocity(velocity.x, 0.2, velocity.z);
-
   }
 }
