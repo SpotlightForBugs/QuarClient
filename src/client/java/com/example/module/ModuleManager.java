@@ -6,8 +6,6 @@ import com.example.module.misc.ModInformation;
 import com.example.module.misc.Panic;
 import com.example.module.movement.*;
 import com.example.module.render.Xray;
-import com.example.ui.screens.clickgui.ClickGUI;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +47,6 @@ public class ModuleManager {
     mods.add(new FastEat());
     mods.add(new Panic(mods));
   }
-
 
   public void disableMod(String name) {
     for (Mod mod : mods) {
