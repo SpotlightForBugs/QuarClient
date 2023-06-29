@@ -1,10 +1,13 @@
 package com.example.module;
 
 import com.example.module.misc.AntiAFK;
+import com.example.module.misc.FastEat;
 import com.example.module.misc.ModInformation;
 import com.example.module.misc.Panic;
 import com.example.module.movement.*;
 import com.example.module.render.Xray;
+import com.example.ui.screens.clickgui.ClickGUI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,20 +46,10 @@ public class ModuleManager {
     mods.add(new Step());
     mods.add(new ModInformation());
     mods.add(new Sprint());
+    mods.add(new FastEat());
     mods.add(new Panic(mods));
-    mods.add(
-        new Mod("HUD", "the HUD", Mod.Category.MISC) {
-          @Override
-          public void onEnable() {
-            super.onEnable();
-          }
-
-          @Override
-          public void onDisable() {
-            super.onDisable();
-          }
-        });
   }
+
 
   public void disableMod(String name) {
     for (Mod mod : mods) {
