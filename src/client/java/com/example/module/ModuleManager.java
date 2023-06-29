@@ -1,5 +1,6 @@
 package com.example.module;
 
+import com.example.module.combat.Criticals;
 import com.example.module.misc.AntiAFK;
 import com.example.module.misc.FastEat;
 import com.example.module.misc.ModInformation;
@@ -49,7 +50,11 @@ public class ModuleManager {
     mods.add(new ModInformation());
     mods.add(new Sprint());
     mods.add(new FastEat());
+    mods.add(new Criticals());
+    //-----------------------\\
+    //MUST BE LAST
     mods.add(new Panic(mods));
+    //MUST BE LAST
   }
 
   public void disableMod(String name) {

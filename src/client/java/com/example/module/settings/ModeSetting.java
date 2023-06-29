@@ -3,18 +3,18 @@ package com.example.module.settings;
 import java.util.Arrays;
 import java.util.List;
 
-public class ModeSetting extends Setting{
+public class ModeSetting extends Setting {
 
     private List<String> modes;
     private int index;
     private String mode;
-      public ModeSetting(String name,String defaultMode, String... modes) {
+
+    public ModeSetting(String name, String defaultMode, String... modes) {
         super(name);
         this.mode = defaultMode;
         this.modes = Arrays.asList(modes);
         this.index = this.modes.indexOf(defaultMode);
     }
-
 
 
     public List<String> getModes() {
@@ -29,7 +29,6 @@ public class ModeSetting extends Setting{
         this.index = index;
         this.mode = this.modes.get(index);
     }
-
 
 
     public String getMode() {

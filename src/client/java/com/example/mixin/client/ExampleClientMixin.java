@@ -17,5 +17,12 @@ public class ExampleClientMixin {
   @Inject(method = "tick", at = @At("RETURN"), cancellable = true)
   public void changeWindowTitle(CallbackInfo ci) {
     MinecraftClient.getInstance().getWindow().setTitle(ExampleModClient.INSTANCE.getWindowTitle());
+
+
   }
+  
+
+
+
+
 }

@@ -42,6 +42,8 @@ public class Mod {
 
   public void onDisable() {}
 
+  public void onLeftClick() {}
+
   public void onTick() {}
 
   public String getName() {

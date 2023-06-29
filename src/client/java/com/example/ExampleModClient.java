@@ -8,7 +8,9 @@ import io.sentry.protocol.User;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.network.ClientConnection;
 import net.minecraft.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,25 +68,25 @@ public class ExampleModClient implements ClientModInitializer {
         try {
 
 
-        if (mc.player != null && mc.world != null) {
-            if (mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
-                if (action == GLFW.GLFW_PRESS) {
-                    for (Mod mod : ModuleManager.INSTANCE.getModules()) {
-                        if (mod.getKey() == key) {
-                            if (mod.isEnabled()) {
-                                logger.info("Disabling " + mod.getName());
-                            } else {
-                                logger.info("Enabling " + mod.getName());
+            if (mc.player != null && mc.world != null) {
+                if (mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
+                    if (action == GLFW.GLFW_PRESS) {
+                        for (Mod mod : ModuleManager.INSTANCE.getModules()) {
+                            if (mod.getKey() == key) {
+                                if (mod.isEnabled()) {
+                                    logger.info("Disabling " + mod.getName());
+                                } else {
+                                    logger.info("Enabling " + mod.getName());
+                                }
+                                mod.toggle();
                             }
-                            mod.toggle();
                         }
-                    }
-                    if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
-                        mc.setScreen(ClickGUI.INSTANCE);
+                        if (key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
+                            mc.setScreen(ClickGUI.INSTANCE);
+                        }
                     }
                 }
             }
-        }
         } catch (Exception e) {
             Sentry.captureException(e);
         }
@@ -95,16 +97,35 @@ public class ExampleModClient implements ClientModInitializer {
         try {
 
 
-
-        if (mc.player != null && mc.world != null) {
-            for (Mod mod : ModuleManager.INSTANCE.getEnabledModules()) {
-                mod.onTick();
+            if (mc.player != null && mc.world != null) {
+                for (Mod mod : ModuleManager.INSTANCE.getEnabledModules()) {
+                    mod.onTick();
+                }
             }
+        } catch (Exception e) {
+
+            Sentry.captureException(e);
         }
+
+    }
+
+
+
+    public void onLeftClick() {
+        try {
+
+            if (mc.player != null) {
+                for (Mod mod : ModuleManager.INSTANCE.getEnabledModules()) {
+                    mod.onLeftClick();
+                }
+            }
         } catch (Exception e) {
             Sentry.captureException(e);
         }
+
+
     }
+
 
     public String getWindowTitle() {
         return "QuarClient by SFB";
