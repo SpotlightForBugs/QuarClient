@@ -21,7 +21,6 @@ import io.sentry.Sentry;
 public class ExampleModClient implements ClientModInitializer {
     public static final ExampleModClient INSTANCE = new ExampleModClient();
     public ServerCheck serverCheck = new ServerCheck();
-    public static ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
 
     public Logger logger = LogManager.getLogger(ExampleModClient.class);
@@ -69,8 +68,9 @@ public class ExampleModClient implements ClientModInitializer {
 
 
             if (mc.player != null && mc.world != null) {
-                if (mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen))) {
+                if (mc.currentScreen == null || (!(mc.currentScreen instanceof ChatScreen) && !(mc.currentScreen instanceof ClickGUI))) {
                     if (action == GLFW.GLFW_PRESS) {
+
                         for (Mod mod : ModuleManager.INSTANCE.getModules()) {
                             if (mod.getKey() == key) {
                                 if (mod.isEnabled()) {
@@ -108,7 +108,6 @@ public class ExampleModClient implements ClientModInitializer {
         }
 
     }
-
 
 
     public void onLeftClick() {

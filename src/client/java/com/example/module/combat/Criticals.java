@@ -17,25 +17,21 @@ public class Criticals extends Mod {
     }
 
 
-
     @Override
-    public void onLeftClick(){
+    public void onLeftClick() {
 
-        if(mc.player.isInLava() || mc.player.isInsideWaterOrBubbleColumn() || mc.player.isTouchingWater() || mc.player.isFallFlying() || mc.player.hasVehicle() || mc.player.isSneaking() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose()){
+        if (mc.player.isInLava() || mc.player.isInsideWaterOrBubbleColumn() || mc.player.isTouchingWater() || mc.player.isFallFlying() || mc.player.hasVehicle() || mc.player.isSneaking() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose() || mc.player.isInSneakingPose() || mc.player.isInSwimmingPose()) {
 
             return;
 
         }
 
         //check if the players crosshair is facing an entity
-        if(mc.crosshairTarget == null
-                || mc.crosshairTarget.getType() != HitResult.Type.ENTITY
-                || !(((EntityHitResult)mc.crosshairTarget)
-                .getEntity() instanceof LivingEntity))
+        if (mc.crosshairTarget == null || mc.crosshairTarget.getType() != HitResult.Type.ENTITY || !(((EntityHitResult) mc.crosshairTarget).getEntity() instanceof LivingEntity))
             return;
 
 
-        switch (mode.getMode()){
+        switch (mode.getMode()) {
             case "Packet":
                 performPacketJump();
             case "MiniJump":
@@ -45,14 +41,10 @@ public class Criticals extends Mod {
         }
 
 
-
-
-
     }
 
 
-    private void performPacketJump()
-    {
+    private void performPacketJump() {
         assert mc.player != null;
         double posX = mc.player.getX();
         double posY = mc.player.getY();
@@ -64,27 +56,23 @@ public class Criticals extends Mod {
         sendPos(posX, posY, posZ, false);
     }
 
-    private void sendPos(double x, double y, double z, boolean onGround)
-    {
+    private void sendPos(double x, double y, double z, boolean onGround) {
         assert mc.player != null;
-        mc.player.networkHandler.sendPacket(
-                new PlayerMoveC2SPacket.PositionAndOnGround(x, y, z, onGround));
+        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, y, z, onGround));
     }
 
-    private void performMiniJump()
-    {
+    private void performMiniJump() {
         assert mc.player != null;
         mc.player.addVelocity(0, 0.1, 0);
         mc.player.fallDistance = 0.1F;
         mc.player.setOnGround(false);
     }
 
-    private void performJump()
-    {
+    private void performJump() {
         assert mc.player != null;
         mc.player.jump();
     }
-    
-    
+
+
 }
 
