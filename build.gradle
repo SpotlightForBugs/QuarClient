@@ -46,6 +46,8 @@ loom {
 
 dependencies {
 	implementation 'io.sentry:sentry:6.16.0'
+	implementation 'io.sentry:sentry-log4j2:6.23.0'
+
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

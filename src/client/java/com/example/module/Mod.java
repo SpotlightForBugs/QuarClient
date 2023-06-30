@@ -1,5 +1,6 @@
 package com.example.module;
 
+import com.example.module.settings.ModeSetting;
 import com.example.module.settings.Setting;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,8 +83,17 @@ public class Mod {
   }
 
   public String getDisplayName() {
+    //Add the active setting to the display name, if there is one
+for (Setting setting : settings) {
+      if (setting instanceof ModeSetting modeSetting) {
+        if (modeSetting.isMode(modeSetting.getMode())) {
+          return displayName + " " + modeSetting.getMode();
+        }
+      }
+    }
     return displayName;
-  }
+    }
+
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
